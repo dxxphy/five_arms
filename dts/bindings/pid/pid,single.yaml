@@ -1,0 +1,26 @@
+# Copyright (c) 2024 ttwards <12411711@mail.sustech.edu.cn>
+
+# SPDX-License-Identifier: Apache-2.0
+
+description: Single PID Controller
+
+compatible: "pid,single"
+
+include: [base.yaml]
+
+properties:
+  k_p:
+    type: string
+    required: true
+  k_i:
+    type: string
+  k_d: 
+    type: string
+  i_max:
+    type: string
+  out_max:
+    type: string
+  offset:
+    type: string
+  detri_lpf:
+    type: string

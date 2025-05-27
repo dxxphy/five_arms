@@ -1,0 +1,46 @@
+# Motor driver configuration options
+
+# Copyright (c) 2024 ttwards <12411711@mail.sustech.edu.cn>
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig MOTOR
+    bool "Motor drivers"
+    help
+      Enable support for motors.
+
+if MOTOR
+
+module = MOTOR
+module-str = MOTOR
+source "subsys/logging/Kconfig.template.log_config"
+
+config MOTOR_DJI
+    bool "MOTOR DJI"
+    help
+      Add support for dji motors
+    select PID
+
+config MOTOR_DM
+	bool "MOTOR DM"
+	help
+	  Add support for dm motors
+    select PID
+
+config MOTOR_MI
+  bool "MOTOR MI"
+  help
+    Add support for mi motors
+  select PID
+    
+config MOTOR_LOG_LEVEL
+    int "Motor log level"
+    default 4
+    help
+      The log level of motor driver
+
+config MOTOR_INIT_PRIORITY
+    int "Motor init priority"
+    default 90
+    help
+      The init priority of motor driver
+endif

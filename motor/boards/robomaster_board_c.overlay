@@ -1,0 +1,29 @@
+/ {
+	motor0: motor0{
+		compatible = "dji,motor";
+		is_m3508;
+		id = <1>;
+		rx_id = <0x201>;
+		tx_id = <0x200>;
+		gear_ratio = "19.20";
+		status = "okay";
+		can_channel = <&canbus1>;
+		controllers = <&speed_pid>;
+		capabilities = "speed";
+	};
+
+	pid {
+		speed_pid: speed_pid {
+			#controller-cells = <0>;
+			compatible = "pid,single";
+			k_p = "1.8";
+			k_i = "2.0";
+			k_d = "2";
+			detri_lpf = "0.985";
+		};
+	};
+	sbus0: sbus0 {
+		compatible = "ares,sbus";
+		status = "okay";
+	};
+};

@@ -1,0 +1,26 @@
+# Copyright (c) 2025 ttwards <12411711@mail.sustech.edu.cn>
+
+# SPDX-License-Identifier: Apache-2.0
+
+description: Multi Wheel Chassis
+
+compatible: "ares,chassis"
+
+include: [base.yaml]
+
+properties:
+  wheels:
+    type: phandle-array
+    required: true
+    specifier-space: wheel
+  speed-limit:
+    type: string
+  angle-pid:
+    type: phandle
+    required: true
+  track_angle:
+    type: boolean
+  max_gyro:
+    type: string
+  max_linear_accel:
+    type: string
