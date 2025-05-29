@@ -206,6 +206,30 @@ void go_to_position(Five *link, float l, float angle) {
   int n=40; // 分段数
   while(i < n)
   {
+
+    alpha = orig_angle_1 - ((phi1 / M_PI) * 180.f)
+    beta = orig_angle_2 - ((phi4 / M_PI) * 180.f)
+    if(last_target_angle1 > alpha && last_target_angle2 > beta)//both anticlockwise
+    {
+       motor_set(motor1, motor2, 0.0f, 10.0f, (last_target_angle1 - alpha) / (float)n * (i + 1) - last_target_angle1,
+      - (last_target_angle2 - beta) / (float)n * (i + 1) + last_target_angle2 );
+    }
+    if(last_target_angle1 < alpha && last_target_angle2 < beta)//both clockwise
+    {
+       motor_set(motor1, motor2, 0.0f, 10.0f, - ( - last_target_angle1 + alpha) / (float)n * (i + 1) - last_target_angle1,
+      ( - last_target_angle2 + beta) / (float)n * (i + 1) + last_target_angle2 );
+    }
+    if(last_target_angle1 > alpha && last_target_angle2 < beta)//motor1 anticlockwise and motor2 clockwise
+    {
+       motor_set(motor1, motor2, 0.0f, 10.0f, (last_target_angle1 - alpha) / (float)n * (i + 1) - last_target_angle1,
+      ( - last_target_angle2 + beta) / (float)n * (i + 1) + last_target_angle2 );
+    }
+    if(last_target_angle1 < alpha && last_target_angle2 > beta)//motor1 clockwise and motor2 anticlockwise
+    {
+       motor_set(motor1, motor2, 0.0f, 10.0f, - ( - last_target_angle1 + alpha) / (float)n * (i + 1) - last_target_angle1,
+      - (last_target_angle2 - beta) / (float)n * (i + 1) + last_target_angle2 );
+    }
+    
     motor_set(motor1, motor2, 0.0f, 10.0f,
       (((phi1 / M_PI) * 180.f) - orig_angle_1 + last_target_angle1 ) / (float)n * (i + 1) - last_target_angle1,
       (-last_target_angle2 + orig_angle_2 - ((phi4 / M_PI) * 180.f)) / (float)n * (i + 1) + last_target_angle2 );
